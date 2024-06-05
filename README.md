@@ -2,7 +2,7 @@
 
 Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 17.3.0.
 
-## Alterações 001
+## Alterações 001 - Prettier
 
 Instalado o Prettier com o comando `npm install --save-dev prettier` e configurado o arquivo `.prettierrc` na raiz da aplicação com as seguintes configurações:
 
@@ -22,7 +22,7 @@ Adicionado o script `format` na seção de scripts no arquivo `package.json`:
 
 Executado o comando `npm run format` para formatar todos os arquivos do projeto.
 
-## Alterações 002
+## Alterações 002 - Jest
 
 Removidos Jasmine e Karma:
 
@@ -92,4 +92,12 @@ Alterado arquivo `tsconfig.spec.json` para:
     "files": ["src/test.ts"],
     "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
 }
+```
+
+## Alterações 003 - Angular Material
+
+Adicionado Angular Material:
+
+```bash
+ng add @angular/material
 ```
