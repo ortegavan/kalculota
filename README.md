@@ -2,7 +2,7 @@
 
 Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 17.3.0.
 
-## Alterações em 05/06/2024
+## Alterações 001
 
 Instalado o Prettier com o comando `npm install --save-dev prettier` e configurado o arquivo `.prettierrc` na raiz da aplicação com as seguintes configurações:
 
@@ -21,3 +21,75 @@ Adicionado o script `format` na seção de scripts no arquivo `package.json`:
 ```
 
 Executado o comando `npm run format` para formatar todos os arquivos do projeto.
+
+## Alterações 002
+
+Removidos Jasmine e Karma:
+
+```bash
+npm uninstall jasmine-core @types/jasmine karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter
+```
+
+Instalado Jest + pacotes necessários:
+
+```bash
+npm install --save-dev jest ts-jest @types/jest jest-preset-angular
+```
+
+Criado arquivo de configuração do Jest `jest.config.js` na raiz do projeto com o seguinte conteúdo:
+
+```javascript
+module.exports = {
+    preset: 'jest-preset-angular',
+    setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
+    testPathIgnorePatterns: ['/node_modules/', '/dist/', '/src/test.ts'],
+    moduleFileExtensions: ['ts', 'html', 'js', 'json'],
+    transform: {
+        '^.+\\.(ts|html)$': [
+            'jest-preset-angular',
+            {
+                tsconfig: 'tsconfig.spec.json',
+                stringifyContentPathRegex: '\\.html$',
+            },
+        ],
+    },
+    transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+    moduleNameMapper: {
+        '^@src/(.*)$': '<rootDir>/src/$1',
+    },
+    collectCoverage: true,
+    coverageReporters: ['html'],
+};
+```
+
+Criado arquivo de configuração do Jest `setup-jest.ts` na raiz do projeto com o seguinte conteúdo:
+
+```javascript
+import 'jest-preset-angular/setup-jest';
+```
+
+No arquivo `package.json`, alterada a seção de scripts de teste para:
+
+```json
+"scripts": {
+  ...
+  "test": "jest",
+  "test:watch": "jest --watch",
+  ...
+}
+```
+
+Alterado arquivo `tsconfig.spec.json` para:
+
+```json
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./out-tsc/spec",
+        "types": ["jest", "node"],
+        "module": "commonjs"
+    },
+    "files": ["src/test.ts"],
+    "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
+}
+```
