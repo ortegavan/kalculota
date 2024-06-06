@@ -71,12 +71,8 @@ import 'jest-preset-angular/setup-jest';
 No arquivo `package.json`, alterada a seção de scripts de teste para:
 
 ```json
-"scripts": {
-  ...
   "test": "jest",
   "test:watch": "jest --watch",
-  ...
-}
 ```
 
 Alterado arquivo `tsconfig.spec.json` para:
@@ -101,3 +97,7 @@ Adicionado Angular Material:
 ```bash
 ng add @angular/material
 ```
+
+## Alterações 004 - Cálculos
+
+Criada service que realiza os cálculos de IRRF, PIS, COFINS e CSLL. Escritos testes para os cálculos.
