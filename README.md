@@ -90,6 +90,8 @@ Alterado arquivo `tsconfig.spec.json` para:
 }
 ```
 
+No arquivo `angular.json`, remover a seção `test`.
+
 ## Alterações 003 - Angular Material
 
 Adicionado Angular Material:
