@@ -20,7 +20,11 @@ export class CalculadoraService {
         return this.arredondar(valor * 0.01);
     }
 
-    private arredondar(valor: number): number {
+    public somar(params: number[]): number {
+        return this.arredondar(params.reduce((a, b) => a + b, 0));
+    }
+
+    public arredondar(valor: number): number {
         return Math.round((valor + Number.EPSILON) * 100) / 100;
     }
 }

@@ -1,0 +1,35 @@
+<h3>
+    Calcula os impostos para serviços de programação sob demanda
+</h3>
+
+<form class="flex" [formGroup]="form">
+    <div class="valores">
+        <mat-form-field>
+            <mat-label>Valor da NF</mat-label>
+            <input matInput type="text" placeholder="0.00" formControlName="valor">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>A receber</mat-label>
+            <input matInput type="text" placeholder="0.00" formControlName="aReceber">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Valor dos impostos</mat-label>
+            <input matInput type="text" placeholder="0.00" formControlName="aPagar">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Percentual de impostos</mat-label>
+            <input matInput type="text" value="6,15%">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="calcular()">Calcular</button>
+    </div>
+    <div>
+        <mat-form-field class="discriminacao">
+            <mat-label>Discriminação</mat-label>
+            <textarea matInput rows="14" formControlName="descricao"></textarea>
+        </mat-form-field>
+    </div>
+</form>

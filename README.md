@@ -101,3 +101,7 @@ ng add @angular/material
 ## Alterações 004 - Cálculos
 
 Criada service que realiza os cálculos de IRRF, PIS, COFINS e CSLL. Escritos testes para os cálculos.
+
+## Alterações 005 - Tela
+
+Criada primeira versão de layout + implementação. Ainda sem testes e sem máscaras.

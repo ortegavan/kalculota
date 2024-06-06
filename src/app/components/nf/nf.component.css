@@ -1,0 +1,16 @@
+.flex {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+}
+
+.valores {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.discriminacao {
+    width: 640px;
+    height: 404px;
+}
