@@ -102,6 +102,9 @@ ng add @angular/material
 
 Criada service que realiza os cálculos de IRRF, PIS, COFINS e CSLL. Escritos testes para os cálculos.
 
-## Alterações 005 - Tela
+## Alterações 005 - Interface
 
-Criada primeira versão de layout + implementação. Ainda sem testes e sem máscaras.
+-   Criada primeira versão de layout + implementação;
+-   Adicionado `ngx-currency` para máscaras de input, link [aqui](https://www.npmjs.com/package/ngx-currency);
+-   Customizadas fontes e cores;
+-   Atualizado favicon.

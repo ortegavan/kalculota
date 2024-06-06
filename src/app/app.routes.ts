@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { NfComponent } from './components/nf/nf.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
     {
@@ -13,11 +12,7 @@ export const routes: Routes = [
         component: NfComponent,
     },
     {
-        path: '404',
-        component: NotFoundComponent,
-    },
-    {
         path: '**',
-        redirectTo: '404',
+        redirectTo: 'nf',
     },
 ];

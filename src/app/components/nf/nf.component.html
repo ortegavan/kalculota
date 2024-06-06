@@ -6,22 +6,24 @@
     <div class="valores">
         <mat-form-field>
             <mat-label>Valor da NF</mat-label>
-            <input matInput type="text" placeholder="0.00" formControlName="valor">
+            <input matInput type="text" placeholder="0.00" formControlName="valor" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+            <mat-error>Campo obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>A receber</mat-label>
-            <input matInput type="text" placeholder="0.00" formControlName="aReceber">
+            <input matInput type="text" placeholder="0.00" formControlName="aReceber" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Valor dos impostos</mat-label>
-            <input matInput type="text" placeholder="0.00" formControlName="aPagar">
+            <input matInput type="text" placeholder="0.00" formControlName="aPagar" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Percentual de impostos</mat-label>
-            <input matInput type="text" value="6,15%">
+            <input matInput type="text" value="6,15" currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',' }">
+            <span matTextSuffix>%</span>
         </mat-form-field>
 
         <button mat-raised-button color="primary" (click)="calcular()">Calcular</button>

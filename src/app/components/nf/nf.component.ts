@@ -6,6 +6,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { DecimalPipe, registerLocaleData } from '@angular/common';
+import { NgxCurrencyDirective } from 'ngx-currency';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,6 +24,7 @@ registerLocaleData(localePt);
         MatInputModule,
         MatButtonModule,
         ReactiveFormsModule,
+        NgxCurrencyDirective,
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }, DecimalPipe],
     templateUrl: './nf.component.html',
@@ -65,10 +67,8 @@ export class NfComponent implements OnInit {
             ]);
 
             this.form.patchValue({
-                aReceber: this.converter(
-                    this.service.arredondar(valor - this.imposto.total),
-                ),
-                aPagar: this.converter(this.imposto.total),
+                aReceber: this.service.arredondar(valor - this.imposto.total),
+                aPagar: this.imposto.total,
                 descricao: `Prestacao de servicos de elaboracao de programas de computador (software) em projetos de informatica, conforme contrato.
 
 IRRF Art. 647 RIR/99
