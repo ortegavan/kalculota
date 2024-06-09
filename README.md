@@ -110,3 +110,29 @@ Criada service que realiza os cálculos de IRRF, PIS, COFINS e CSLL. Escritos te
 -   Adicionado `ngx-currency` para máscaras de input, link [aqui](https://www.npmjs.com/package/ngx-currency);
 -   Customizadas fontes e cores;
 -   Atualizado favicon.
+
+## Alterações 006 - Design
+
+-   Removido Angular Material e ngx-currency:
+
+```bash
+npm uninstall @angular/material @angular/cdk ngx-currency
+```
+
+-   Removido estilo do Material do `angular.json`;
+-   Removidas referências (fontes e ícones) do Material da `index.html`;
+-   Instalado PrimeNG:
+
+```bash
+npm install primeng primeicons
+```
+
+-   Alterado `input` para `p-inputNumber` do PrimeNG;
+-   Alterado `button` para `p-button` do PrimeNG;
+-   Importado tema no `styles.css`:
+
+```css
+@import url('primeng/resources/themes/lara-light-teal/theme.css');
+```
+
+-   Refeito layout.

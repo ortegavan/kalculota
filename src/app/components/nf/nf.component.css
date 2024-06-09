@@ -1,16 +1,79 @@
-.flex {
+.container {
+    height: 96%;
+    display: flex;
+    padding-top: 40px;
+}
+
+.ferramentas {
+    width: 86px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 40px;
+    padding-top: 32px;
+    background-color: #e7eef0;
+}
+
+.ferramenta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 10px;
+}
+
+.conteudo {
     width: 100%;
+    background-color: #f2f6f7;
+    padding: 16px;
+}
+
+.topo {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form {
     display: flex;
     gap: 16px;
 }
 
-.valores {
+.resultado {
+    margin-top: 16px;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    gap: 16px;
 }
 
-.discriminacao {
-    width: 640px;
-    height: 404px;
+.resultado > div {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 16px;
+}
+
+.impostos {
+    width: 320px;
+}
+
+.descricao {
+    width: 100%;
+}
+
+.descricao p,
+.impostos p {
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titulo {
+    font-weight: bold;
+    background-color: #e7eef0;
+    padding: 16px;
+    border-radius: 6px;
 }
