@@ -1,18 +1,11 @@
 import { Component, LOCALE_ID, OnInit, inject } from '@angular/core';
-import {
-    FormBuilder,
-    FormGroup,
-    ReactiveFormsModule,
-    Validators,
-} from '@angular/forms';
-import { DecimalPipe, registerLocaleData } from '@angular/common';
-import { NgxCurrencyDirective } from 'ngx-currency';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { DecimalPipe, CurrencyPipe, registerLocaleData } from '@angular/common';
 import { CalculadoraService } from '../../services/calculadora.service';
 import { Imposto } from '../../models/imposto.model';
 import localePt from '@angular/common/locales/pt';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ButtonModule } from 'primeng/button';
 
 registerLocaleData(localePt);
 
@@ -20,11 +13,10 @@ registerLocaleData(localePt);
     selector: 'app-nf',
     standalone: true,
     imports: [
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
         ReactiveFormsModule,
-        NgxCurrencyDirective,
+        InputNumberModule,
+        ButtonModule,
+        CurrencyPipe,
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }, DecimalPipe],
     templateUrl: './nf.component.html',
@@ -37,18 +29,32 @@ export class NfComponent implements OnInit {
 
     form!: FormGroup;
     imposto = {} as Imposto;
+    aReceber = 0;
+    descricao = '';
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            valor: ['', [Validators.required]],
-            aReceber: [''],
-            aPagar: [''],
-            descricao: [''],
+            valor: '',
         });
     }
 
     converter(valor: number) {
-        return this.decimalPipe.transform(valor, '1.2-2');
+        return this.decimalPipe.transform(valor, '1.2-2') || '0,00';
+    }
+
+    copiarDescricao() {
+        navigator.clipboard.writeText(this.descricao.replaceAll('<br>', ''));
+    }
+
+    copiarAReceber() {
+        navigator.clipboard.writeText(this.converter(this.aReceber));
+    }
+
+    limpar() {
+        this.form.setValue({ valor: '0' });
+        this.imposto = {} as Imposto;
+        this.aReceber = 0;
+        this.descricao = '';
     }
 
     calcular() {
@@ -66,20 +72,18 @@ export class NfComponent implements OnInit {
                 this.imposto.csll,
             ]);
 
-            this.form.patchValue({
-                aReceber: this.service.arredondar(valor - this.imposto.total),
-                aPagar: this.imposto.total,
-                descricao: `Prestacao de servicos de elaboracao de programas de computador (software) em projetos de informatica, conforme contrato.
+            this.aReceber = this.service.arredondar(valor - this.imposto.total);
 
-IRRF Art. 647 RIR/99
-IRRF (1,50%): R$ ${this.converter(this.imposto.irrf)}
-Imp. Lei 10833/03 Art. 30
-PIS (0,65%): R$ ${this.converter(this.imposto.pis)}
-COFINS (3,00%): R$ ${this.converter(this.imposto.cofins)}
-CSLL (1,00%): R$ ${this.converter(this.imposto.csll)}
+            this.descricao = `Prestacao de servicos de elaboracao de programas de computador (software) em projetos de informatica, conforme contrato.<br><br>
 
-Nao sujeito a retencao de INSS conforme IN SRP 03 de 14/07/2005 - Decreto 3048/99 e alteracoes.`,
-            });
+IRRF Art. 647 RIR/99<br>
+IRRF (1,50%): R$ ${this.converter(this.imposto.irrf)}<br>
+Imp. Lei 10833/03 Art. 30<br>
+PIS (0,65%): R$ ${this.converter(this.imposto.pis)}<br>
+COFINS (3,00%): R$ ${this.converter(this.imposto.cofins)}<br>
+CSLL (1,00%): R$ ${this.converter(this.imposto.csll)}<br><br>
+
+Nao sujeito a retencao de INSS conforme IN SRP 03 de 14/07/2005 - Decreto 3048/99 e alteracoes.`;
         }
     }
 }
