@@ -33,7 +33,7 @@ npm uninstall jasmine-core @types/jasmine karma karma-chrome-launcher karma-cove
 Instalado Jest + pacotes necessários:
 
 ```bash
-npm install --save-dev jest ts-jest @types/jest jest-preset-angular
+npm install --save-dev jest ts-jest ts-node @types/jest jest-preset-angular
 ```
 
 Criado arquivo de configuração do Jest `jest.config.js` na raiz do projeto com o seguinte conteúdo:
