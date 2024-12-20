@@ -11,7 +11,6 @@ registerLocaleData(localePt);
 
 @Component({
     selector: 'app-nf',
-    standalone: true,
     imports: [
         ReactiveFormsModule,
         InputNumberModule,
@@ -20,7 +19,7 @@ registerLocaleData(localePt);
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }, DecimalPipe],
     templateUrl: './nf.component.html',
-    styleUrl: './nf.component.css',
+    styleUrl: './nf.component.css'
 })
 export class NfComponent implements OnInit {
     fb = inject(FormBuilder);
